@@ -1,0 +1,62 @@
+﻿node : C:\Users\Sangram Borud
+e\Documents\coding\testing1\t
+est2\node_modules\router\inde
+x.js:151
+At line:1 char:1
++ node test2/routes/app.js 
+2>&1 | Out-File -FilePath 
+.\server_log.txt - ...
++ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (C:\User  
+  s\Sangra...er\index.js:1   
+ 51:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+    throw new 
+TypeError('argument callback 
+is required')
+    ^
+
+TypeError: argument callback 
+is required
+    at router.handle 
+(C:\Users\Sangram Borude\Docu
+ments\coding\testing1\test2\n
+ode_modules\router\index.js:1
+51:11)
+    at router 
+(C:\Users\Sangram Borude\Docu
+ments\coding\testing1\test2\n
+ode_modules\router\index.js:6
+0:12)
+    at Object.<anonymous> 
+(C:\Users\Sangram Borude\Docu
+ments\coding\testing1\test2\r
+outes\host.js:8:1)
+    at Module._compile (node:
+internal/modules/cjs/loader:1
+761:14)
+    at Object..js (node:inter
+nal/modules/cjs/loader:1893:1
+0)
+    at Module.load (node:inte
+rnal/modules/cjs/loader:1481:
+32)
+    at Module._load (node:int
+ernal/modules/cjs/loader:1300
+:12)
+    at 
+TracingChannel.traceSync (nod
+e:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:i
+nternal/modules/cjs/loader:24
+5:24)
+    at Module.require (node:i
+nternal/modules/cjs/loader:15
+04:12)
+
+Node.js v24.12.0
