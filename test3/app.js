@@ -14,6 +14,9 @@ const PORT = 3005;
 //parsing
 app.use(express.urlencoded({extended: true}));
 
+// public middleware
+app.use(express.static(path.join(rootDir,'public')));
+
 app.use(user);
 app.use('/host',host);
 app.use((req,res,next) => {
