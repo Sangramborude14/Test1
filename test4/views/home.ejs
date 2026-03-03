@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/home.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to NORD</h1>
+    </header>
+    <main>
+        <a href="host/contact-us">Click here to Register</a>
+
+    <div>
+        <h2>Here are our registered users: </h2>
+        <ul>
+            <% registeredHomes.forEach(home => { %>
+                <li>
+                <%= home.name %>  
+                </li>
+            <% }) %>
+        </ul>
+
+    </div>
+    </main>
+
+</body>
+
+</html>
