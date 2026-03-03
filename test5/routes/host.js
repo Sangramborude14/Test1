@@ -21,7 +21,7 @@ const registeredHomes = [];
 hostRouter.post("/contact-us", (req, res, next) => {
     if    (req.body.name.length > 0 && req.body.age.length > 0)    {  
 
-        registeredHomes.push({ name: req.body.name ,age: req.body.age});
+        registeredHomes.push({ name: req.body.name ,age: req.body.age,gender: req.body.gender,email: req.body.email,mobile: req.body.mobile});
         console.log(`registration successful for:`, req.body);
         res.render('contacted-us',{pageTitle:'thanks you giving info!'});
 

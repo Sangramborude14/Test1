@@ -1,0 +1,33 @@
+//local modules
+const Home = require("../models/home.js");
+//contact=us(GET)
+exports.contact_us_get = (req, res, next) => {
+    console.log(`middleware2(contact-us)`);
+    res.render('contact-us', { pageTitle: 'Contact Us' });
+}
+
+//Contact-us(POST)
+exports.contact_us_post = (req, res, next) => {
+
+    if (req.body.name.length > 0 && req.body.age.length > 0) {
+        const { name, age, gender, mobile, email } = req.body;
+        const home = new Home(name, age, gender, mobile, email) // Home--> Class imported from models/home.js || home --> object of class Home
+        home.save();                                              // function of Home
+        console.log(`registration successful for:`, req.body);
+        res.render('contacted-us', { pageTitle: 'thanks you giving info!' });
+
+        // res.render('home', { registeredHomes: registeredHomes })
+        // res.redirect("/"); --> This can also be used
+
+    } else {
+        console.log(`empty registration :/`)
+        res.render('contacted-us', { pageTitle: 'thanks you giving info!' });
+    }
+}
+
+//home_page(GET)
+exports.home_page = (req, res, next) => {
+    const registeredHomes = Home.fetchAll();
+    console.log(`middleware1(home page)`)
+    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', })
+}

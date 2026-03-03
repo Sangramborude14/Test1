@@ -7,13 +7,11 @@ const userRouter = express.Router();
 
 //local
 const rootDir = require("../utils/pathUtils.js");
-const { registeredHomes } = require('./host.js');
+const homeController = require("../controllers/home.js")
+
 
 //home page
-userRouter.get("/", (req, res, next) => {
-    console.log(`middleware1(home page)`)
-    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home' ,})
-});
+userRouter.get("/", homeController.home_page);
 
 //export
 module.exports = userRouter;
