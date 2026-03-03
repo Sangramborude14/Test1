@@ -1,6 +1,7 @@
 //local modules
 const Home = require("../models/home.js");
-//contact=us(GET)
+
+//contact-us(GET)
 exports.contact_us_get = (req, res, next) => {
     console.log(`middleware2(contact-us)`);
     res.render('contact-us', { pageTitle: 'Contact Us' });
@@ -27,7 +28,9 @@ exports.contact_us_post = (req, res, next) => {
 
 //home_page(GET)
 exports.home_page = (req, res, next) => {
-    const registeredHomes = Home.fetchAll();
+    const registeredHomes = Home.fetchAll((registeredHomes) => {
+        res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home' })
+    });
     console.log(`middleware1(home page)`)
-    res.render('home', { registeredHomes: registeredHomes, pageTitle: 'Home', })
+    
 }
