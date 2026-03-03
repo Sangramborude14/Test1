@@ -1,0 +1,35 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <header>
+            <%- include('../partials/nav') %>
+                <h1>Please enter your details</h1>
+        </header>
+        <main>
+            <form action="/host/contact-us" method="post">
+                <label>NAME: </label>
+                <input type="text" name="name" placeholder="enter you name"><br>
+                <label>AGE: </label>
+                <input type="number" name="age" placeholder="enter your age"><br>
+
+                <label>Gender: </label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="gender" value="male"> Male
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="gender" value="female"> Female
+                    </label>
+                </div><br>
+
+                <label>MOBILE No: </label>
+                <input type="number" name="mobile" placeholder="enter you no">
+                <label>EMAIL: </label>
+                <input type="email" name="email" placeholder="enter your email">
+                <button type="submit">SUBMIT</button><br>
+            </form>
+        </main>
+
+    </body>
+
+    </html>
