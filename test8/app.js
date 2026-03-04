@@ -11,7 +11,8 @@ app.set('views', 'views');
 const rootDir = require("./utils/pathUtils.js");
 const { host } = require("./routes/host.js");
 const user = require("./routes/user.js");
-const errorController = require("./controllers/error.js")
+const errorController = require("./controllers/error.js");
+const { mongoConnect } = require('./utils/databaseUtil.js');
 
 const PORT = 3005;
 
@@ -25,6 +26,8 @@ app.use('/host', host);
 app.use(errorController.error_404)
 
 //starting PORT
-app.listen(PORT, () => {
-    console.log(`running at http://localhost:${PORT}`);
-})
+mongoConnect(() => {
+    app.listen(PORT, () => {
+        console.log(`running at http://localhost:${PORT}`);
+    })
+});

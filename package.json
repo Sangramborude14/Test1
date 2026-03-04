@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Sangramborude14/Test1/issues"
   },
-  "homepage": "https://github.com/Sangramborude14/Test1#readme"
+  "homepage": "https://github.com/Sangramborude14/Test1#readme",
+  "dependencies": {
+    "mongodb": "^7.1.0"
+  }
 }

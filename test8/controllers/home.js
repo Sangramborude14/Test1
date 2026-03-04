@@ -13,7 +13,7 @@ exports.contact_us_post = (req, res, next) => {
     if (req.body.name.length > 0 && req.body.age.length > 0) {
         const { name, age, gender, mobile, email } = req.body;
         const home = new Home(name, age, gender, mobile, email) // Home--> Class imported from models/home.js || home --> object of class Home
-        home.save();                                              // function of Home
+        home.save().then(() => console.log(`home saved successfully!`));                                              // function of Home
         console.log(`registration successful for:`, req.body);
         res.render('store/contacted-us', { pageTitle: 'thanks you giving info!' });
 
@@ -28,9 +28,13 @@ exports.contact_us_post = (req, res, next) => {
 
 //home_page(GET)
 exports.home_page = (req, res, next) => {
-    const registeredHomes = Home.fetchAll((registeredHomes) => {
-        res.render('store/home', { registeredHomes: registeredHomes, pageTitle: 'Home' })
-    });
+    Home.fetchAll()
+        .then(registeredHomes => {
+            res.render('store/home', { registeredHomes: registeredHomes, pageTitle: 'Home' });
+        })
+        .catch(err => {
+            console.log(err);
+        });
     console.log(`middleware1(home page)`)
 
 }

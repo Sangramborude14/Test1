@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const rootDir = require('../utils/pathUtils');
-
+const { getDb } = require('../utils/databaseUtil');
 
 module.exports = class Home {
     constructor(name, age, gender, mobile, email) {
@@ -14,30 +14,12 @@ module.exports = class Home {
     }
 
     save() {
-        const save_func = registeredUsers => {
-            registeredUsers.push(this);
-            const userDataPath = path.join(rootDir, 'data', 'userInfo.json');
-            fs.writeFile(userDataPath, JSON.stringify(registeredUsers, null, 2), err => { console.log(`error in file writing`) });
-        }
-
-        Home.fetchAll(save_func);
+        const db = getDb();
+        return db.collection('homes').insertOne(this);
     }
 
-    static fetchAll(callback) {
-        const userDataPath = path.join(rootDir, 'data', 'userInfo.json');
-        fs.readFile(userDataPath, (err, data) => {
-            console.log(`file read`, err);
-            if (!err && data.length > 0) {
-                try {
-                    callback(JSON.parse(data));
-                } catch (parseErr) {
-                    console.error("Error parsing JSON:", parseErr);
-                    callback([]);
-                }
-            } else {
-                callback([]);
-            }
-        });
-
+    static fetchAll() {
+        const db = getDb();
+        return db.collection('homes').find().toArray();
     }
 }
