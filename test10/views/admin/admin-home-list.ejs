@@ -1,0 +1,28 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <header>
+            <%- include('../partials/nav') %>
+                <h1>Admin User List</h1>
+        </header>
+        <main>
+            <a href="/">Go back Home</a>
+            <ul class="user-list">
+                <% registeredHomes.forEach(home => { %>
+                    <li class="user-list-item" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                        <div class="user-list-info">
+                            <span class="user-name" style="margin-right: 20px;"><strong>NAME:</strong>
+                                <%= home.name %>
+                            </span>
+                            <form action="/host/delete-home/<%= home._id %>" method="POST" style="display:inline;">
+                                <button type="submit">DELETE</button>
+                            </form>
+                            <a href="/host/edit-home/<%= home._id %>?editing=true"><button>EDIT</button></a>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+        </main>
+    </body>
+
+    </html>
