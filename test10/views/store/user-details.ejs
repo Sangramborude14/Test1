@@ -8,19 +8,25 @@
         <main style="max-width: 900px;">
             <h1 style="margin-bottom: 30px;">Details of Registered Users</h1>
             <div class="card-container">
-                <% if (user) { %>
+                <% if (viewAll) { %>
+                    <% registeredHomes.forEach( home=> { %>
+                        <div class="cards">
+                            <h2>User Profile</h2>
+                            <strong>Name:</strong> <%= home.name %><br>
+                            <strong>Age:</strong> <%= home.age %><br>
+                            <strong>Email:</strong> <%= home.email %><br>
+                            <strong>Mobile:</strong> <%= home.mobile %><br>
+                            <strong>Gender:</strong> <%= home.gender %><br>
+                        </div>
+                    <% }) %>
+                <% } else if (user) { %>
                     <div class="cards">
                         <h2>User Profile</h2>
-                        <strong>Name:</strong>
-                        <%= user.name %><br>
-                            <strong>Age:</strong>
-                            <%= user.age %><br>
-                                <strong>Email:</strong>
-                                <%= user.email %><br>
-                                    <strong>Mobile:</strong>
-                                    <%= user.mobile %><br>
-                                        <strong>Gender:</strong>
-                                        <%= user.gender %><br>
+                        <strong>Name:</strong> <%= user.name %><br>
+                        <strong>Age:</strong> <%= user.age %><br>
+                        <strong>Email:</strong> <%= user.email %><br>
+                        <strong>Mobile:</strong> <%= user.mobile %><br>
+                        <strong>Gender:</strong> <%= user.gender %><br>
                     </div>
                 <% } else { %>
                     <h2>User not found</h2>

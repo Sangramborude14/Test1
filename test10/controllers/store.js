@@ -1,12 +1,25 @@
 const Home = require("../models/home.js");
 
+exports.all_user_details_get = (req, res, next) => {
+    Home.find()
+        .then(registeredHomes => {
+            res.render('store/user-details', {
+                registeredHomes: registeredHomes,
+                pageTitle: "all user details",
+                viewAll: true
+            });
+        })
+        .catch(err => console.log(err));
+}
+
 exports.user_details_get = (req, res, next) => {
     const userId = req.params.userId;
     Home.findById(userId)
         .then(user => {
             res.render('store/user-details', {
                 user: user,
-                pageTitle: "user details"
+                pageTitle: "user details",
+                viewAll: false
             });
         })
         .catch(err => console.log(err));
