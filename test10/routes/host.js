@@ -27,7 +27,7 @@ hostRouter.get("/admin-home-list",adminController.admin_home_list_get);
 hostRouter.post("/admin-home-list",adminController.admin_home_list_post);
 
 //delete
-hostRouter.get("/delete",adminController)
+hostRouter.get("/delete",adminController.user_delete)
 
 //export 
 exports.host = hostRouter;

@@ -1,0 +1,20 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <header>
+            <%- include('../partials/nav') %>
+            <h1>Login Page</h1>
+        </header>
+        <main>
+            <form method="post" action="/login" >
+                <label>EMAIL</label>
+                <input type="email" placeholder="email" name="email" required>
+                <label>PASSWORD:</label>
+                <input type="password" name="password" placeholder="password" required>
+                <button type="submit" name="login">LOGIN</button>
+
+            </form>
+        </main>
+    </body>
+
+    </html>

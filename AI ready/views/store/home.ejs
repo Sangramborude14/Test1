@@ -1,0 +1,35 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <header>
+            <%- include('../partials/nav') %>
+                <h1>Welcome to NORD</h1>
+        </header>
+        <main>
+            <a href="/host/contact-us">Click here to Register</a>
+
+            <div>
+                <h2>Here are our registered users: </h2>
+                <ul>
+                    <% registeredHomes.forEach(home=> { %>
+                        <li>
+                            <strong>Name:</strong>
+                            <%= home.name %><br>
+                                <strong>Age:</strong>
+                                <%= home.age %><br>
+                                    <strong>Email:</strong>
+                                    <%= home.email %><br>
+                                        <strong>Mobile:</strong>
+                                        <%= home.mobile %><br>
+                                            <strong>Gender:</strong>
+                                            <%= home.gender %><br>
+                        </li>
+                        <% }) %>
+                </ul>
+
+            </div>
+        </main>
+
+    </body>
+
+    </html>

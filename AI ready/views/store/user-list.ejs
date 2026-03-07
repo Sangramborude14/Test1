@@ -1,0 +1,30 @@
+<%- include('../partials/head') %>
+
+    <body>
+        <header>
+            <%- include('../partials/nav') %>
+                <h1>Registered User Names</h1>
+        </header>
+        <main style="max-width: 600px;">
+            <ul class="user-list">
+                <% registeredHomes.forEach(home=> { %>
+                    <li class="user-list-item">
+                        <div class="user-list-info">
+                            <span class="user-name"><strong>NAME:</strong>
+                                <%= home.name %>
+                            </span>
+                        </div>
+                        <div class="user-actions">
+                            <a href="/user-details/<%= home._id %>" class="btn btn-success">DETAILS</a>
+                            <a href="/host/edit-home/<%= home._id %>?editing=true" class="btn btn-primary">EDIT</a>
+                            <form action="/host/delete-home/<%= home._id %>" method="POST" style="margin: 0;">
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>
+                    </li>
+                    <% }) %>
+            </ul>
+        </main>
+    </body>
+
+    </html>
