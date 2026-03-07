@@ -2,7 +2,8 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 //EJS
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -22,9 +23,35 @@ const MONGO_URL = "mongodb+srv://sangram2mail:Sangram%40001@cluster1.i7zdkpw.mon
 //parsing
 app.use(express.urlencoded({ extended: true }));
 
+//monogoDB session
+const store = new MongoDBStore({
+    uri: MONGO_URL,
+    collection: 'sessions'
+})
+
+//session
+app.use(session({
+    secret: "sangram",
+    resave: false,
+    saveUninitialized: true,
+    store
+}))
+
+
+
 // public middleware
+app.use((req, res, next) => {
+    req.isLoggedIn = req.session.isLoggedIn;
+    next();
+});
 app.use(express.static(path.join(rootDir, 'public')));
 app.use(user);
+app.use("/host", (req, res, next) => {
+    if (req.isLoggedIn) {
+        next();
+    } else {
+    res.redirect("/login");}
+})
 app.use('/host', host);
 app.use(authRouter);
 app.use(errorController.error_404);

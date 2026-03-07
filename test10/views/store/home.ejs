@@ -1,35 +1,38 @@
 <%- include('../partials/head') %>
 
-    <body>
-        <header>
-            <%- include('../partials/nav') %>
-                <h1>Welcome to NORD</h1>
-        </header>
-        <main>
-            <a href="/host/contact-us">Click here to Register</a>
+<body>
+    <header>
+        <%- include('../partials/nav') %>
+        <h1>Welcome to NORD</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Management System & User Directory</p>
+    </header>
+    
+    <main>
+        <div style="margin-bottom: 3rem;">
+            <a href="/host/contact-us" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Register New User</a>
+        </div>
 
-            <div>
-                <h2>Here are our registered users: </h2>
-                <ul>
-                    <% registeredHomes.forEach(home=> { %>
-                        <li>
-                            <strong>Name:</strong>
-                            <%= home.name %><br>
-                                <strong>Age:</strong>
-                                <%= home.age %><br>
-                                    <strong>Email:</strong>
-                                    <%= home.email %><br>
-                                        <strong>Mobile:</strong>
-                                        <%= home.mobile %><br>
-                                            <strong>Gender:</strong>
-                                            <%= home.gender %><br>
-                        </li>
-                        <% }) %>
-                </ul>
+        <h2 style="margin-bottom: 2rem;">Overview of Registered Users</h2>
+        <div class="card-container">
+            <% registeredHomes.forEach(home => { %>
+                <div class="cards">
+                    <h2><%= home.name %></h2>
+                    <div class="user-info-item">
+                        <strong>Email:</strong>
+                        <span><%= home.email %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Gender:</strong>
+                        <span><%= home.gender %></span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/user-details" class="btn btn-outline" style="width: 100%;">View Full Profile</a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
 
-            </div>
-        </main>
+</body>
 
-    </body>
-
-    </html>
+</html>

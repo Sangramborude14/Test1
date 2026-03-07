@@ -1,25 +1,25 @@
 <%- include('../partials/head') %>
 
-    <body>
-        <header>
-            <%- include('../partials/nav') %>
-                <h1>Registered User Names</h1>
-        </header>
-        <main style="max-width: 600px;">
-            <ul class="user-list">
-                <% registeredHomes.forEach(home=> { %>
-                    <li class="user-list-item">
-                        <div class="user-list-info">
-                            <span class="user-name"><strong>NAME:</strong>
-                                <%= home.name %>
-                            </span>
-                            <a href="host/delete"><button>DELETE</button></a>
-                            <a href="host/edit"><button>EDIT</button></a>
-                        </div>
-                    </li>
-                    <% }) %>
-            </ul>
-        </main>
-    </body>
+<body>
+    <header>
+        <%- include('../partials/nav') %>
+        <h1>Registered User Names</h1>
+    </header>
+    <main>
+        <ul class="user-list">
+            <% registeredHomes.forEach(home => { %>
+                <li class="user-list-item">
+                    <div class="user-list-info">
+                        <span class="user-name-tag"><%= home.name %></span>
+                    </div>
+                    <div class="user-actions">
+                        <a href="/host/edit" class="btn btn-primary">EDIT</a>
+                        <a href="/host/delete" class="btn btn-danger">DELETE</a>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
 
-    </html>
+</html>

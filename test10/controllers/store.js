@@ -5,7 +5,8 @@ exports.user_details_get = (req, res, next) => {
         .then(registeredHomes => {
             res.render('store/user-details', {
                 registeredHomes: registeredHomes,
-                pageTitle: "user details"
+                pageTitle: "user details",
+                isLoggedIn: req.isLoggedIn
             });
         })
         .catch(err => console.log(err));
@@ -16,7 +17,8 @@ exports.user_details_post = (req, res, next) => {
         .then(registeredHomes => {
             res.render('store/user-details', {
                 registeredHomes: registeredHomes,
-                pageTitle: "user details"
+                pageTitle: "user details",
+                isLoggedIn: req.isLoggedIn
             });
         })
         .catch(err => console.log(err));
@@ -28,7 +30,8 @@ exports.user_list_get = (req, res, next) => {
         .then(registeredHomes => {
             res.render('store/user-list', {
                 registeredHomes: registeredHomes,
-                pageTitle: "user details"
+                pageTitle: "user details",
+                isLoggedIn: req.isLoggedIn
             });
         })
         .catch(err => console.log(err));
@@ -40,7 +43,8 @@ exports.user_list_post = (req, res, next) => {
         .then(registeredHomes => {
             res.render('store/user-list', {
                 registeredHomes: registeredHomes,
-                pageTitle: "user details"
+                pageTitle: "user details",
+                isLoggedIn: req.isLoggedIn
             });
         })
         .catch(err => console.log(err));
@@ -49,9 +53,10 @@ exports.user_list_post = (req, res, next) => {
 
 exports.appointment_get = (req, res, next) => {
     console.log(`appointment`)
-    res.render('store/appointment', { pageTitle: "appointment" })
+    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn });
 }
 exports.appointment_post = (req, res, next) => {
     console.log(`appointment`)
-    res.render('store/appointment', { pageTitle: "appointment" })
+    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn })
 }
+

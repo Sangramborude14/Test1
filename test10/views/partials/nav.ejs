@@ -4,21 +4,28 @@
         <li>
             <a href="/" class="nav-link">Home</a>
         </li>
-        <li>
-            <a href="/host/contact-us" class="nav-link">Add User</a>
-        </li>
-        <li>
-            <a href="/user-details">user-details</a>
-        </li>
-        <li>
-            <a href="/user-list">user-list</a>
-        </li>
-        <li>
-            <a href="/appointment">appointment</a>
-        </li>
-        <li>
-            <a href="/login">Login</a>
-        </li>
+        <% if (isLoggedIn) { %>
+            <li>
+                <a href="/host/contact-us" class="nav-link">Add User</a>
+            </li>
+            <li>
+                <a href="/user-details" class="nav-link">User Details</a>
+            </li>
+            <li>
+                <a href="/user-list" class="nav-link">User List</a>
+            </li>
+            <li>
+                <a href="/appointment" class="nav-link">Appointment</a>
+            </li>
+            <li>
+                <form action="/logout" method="POST" class="logout-form">
+                    <button type="submit" class="nav-link logout-btn">LOGOUT</button>
+                </form>
+            </li>
+        <% } else { %>
+            <li>
+                <a href="/login" class="nav-link">Login</a>
+            </li>
+        <% } %>
     </ul>
 </nav>
-<br>
