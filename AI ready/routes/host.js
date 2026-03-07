@@ -17,9 +17,9 @@ hostRouter.get("/contact-us", homeController.contact_us_get)
 hostRouter.post("/contact-us", homeController.contact_us_post);
 
 //edit-home(GET)
-hostRouter.get("/edit-home",adminController.edit_home_get);
+hostRouter.get("/edit-home/:userId",adminController.edit_home_get);
 //edit-home(POST)
-hostRouter.post("/edit-home",adminController.edit_home_post)
+hostRouter.post("/edit-home/:userId",adminController.edit_home_post)
 
 //admin-home-list(GET)
 hostRouter.get("/admin-home-list",adminController.admin_home_list_get);
@@ -27,7 +27,7 @@ hostRouter.get("/admin-home-list",adminController.admin_home_list_get);
 hostRouter.post("/admin-home-list",adminController.admin_home_list_post);
 
 //delete
-hostRouter.get("/delete",adminController)
+hostRouter.post("/delete-home/:userId", adminController.user_delete);
 
 //export 
 exports.host = hostRouter;

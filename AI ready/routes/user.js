@@ -14,11 +14,14 @@ const storeController = require("../controllers/store.js")
 //home page
 userRouter.get("/", homeController.home_page);
 
-//user-details(GET)
-userRouter.get("/user-details", storeController.user_details_get);
+//user-details(GET) - View All
+userRouter.get("/user-details", storeController.all_user_details_get);
+
+//user-details(GET) - View Single
+userRouter.get("/user-details/:userId", storeController.user_details_get);
 
 //user-details(POST)
-userRouter.post("/user-details", storeController.user_details_post);
+userRouter.post("/user-details/:userId", storeController.user_details_post);
 
 //user-list(GET)
 userRouter.get("/user-list", storeController.user_list_get);
