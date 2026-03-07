@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Sangramborude14/Test1#readme",
   "dependencies": {
+    "connect-mongodb-session": "^5.0.0",
     "mongodb": "^7.1.0"
   }
 }
