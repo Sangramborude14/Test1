@@ -5,12 +5,14 @@
             <a href="/" class="nav-link">Home</a>
         </li>
         <% if (isLoggedIn) { %>
+            <% if(user && user.user_type === 'host') { %>
             <li>
                 <a href="/host/contact-us" class="nav-link">Add User</a>
             </li>
             <li>
                 <a href="/user-details" class="nav-link">User Details</a>
             </li>
+            <% } %>
             <li>
                 <a href="/user-list" class="nav-link">User List</a>
             </li>

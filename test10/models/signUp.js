@@ -22,7 +22,8 @@ const signupSchema = mongoose.Schema({
     user_type: {
         type: String,
         required: true,
-        enum: ['guest', 'host'] // Changed 'user' to 'guest' to match form
+        enum: ['guest', 'host'], // Changed 'user' to 'guest' to match form
+        default: "guest"
     }
 });
 

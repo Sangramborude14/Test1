@@ -6,7 +6,8 @@ exports.user_details_get = (req, res, next) => {
             res.render('store/user-details', {
                 registeredHomes: registeredHomes,
                 pageTitle: "user details",
-                isLoggedIn: req.isLoggedIn
+                isLoggedIn: req.isLoggedIn,
+                user: req.session.user
             });
         })
         .catch(err => console.log(err));
@@ -18,7 +19,8 @@ exports.user_details_post = (req, res, next) => {
             res.render('store/user-details', {
                 registeredHomes: registeredHomes,
                 pageTitle: "user details",
-                isLoggedIn: req.isLoggedIn
+                isLoggedIn: req.isLoggedIn,
+                user: req.session.user
             });
         })
         .catch(err => console.log(err));
@@ -31,7 +33,8 @@ exports.user_list_get = (req, res, next) => {
             res.render('store/user-list', {
                 registeredHomes: registeredHomes,
                 pageTitle: "user details",
-                isLoggedIn: req.isLoggedIn
+                isLoggedIn: req.isLoggedIn,
+                user: req.session.user
             });
         })
         .catch(err => console.log(err));
@@ -44,7 +47,8 @@ exports.user_list_post = (req, res, next) => {
             res.render('store/user-list', {
                 registeredHomes: registeredHomes,
                 pageTitle: "user details",
-                isLoggedIn: req.isLoggedIn
+                isLoggedIn: req.isLoggedIn,
+                user: req.session.user
             });
         })
         .catch(err => console.log(err));
@@ -53,10 +57,10 @@ exports.user_list_post = (req, res, next) => {
 
 exports.appointment_get = (req, res, next) => {
     console.log(`appointment`)
-    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn });
+    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn,user: req.session.user});
 }
 exports.appointment_post = (req, res, next) => {
     console.log(`appointment`)
-    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn })
+    res.render('store/appointment', { pageTitle: "appointment", isLoggedIn: req.isLoggedIn,user: req.session.user})
 }
 
