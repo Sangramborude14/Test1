@@ -1,0 +1,45 @@
+<%- include('../partials/head') %>
+
+<body>
+    <header>
+        <%- include('../partials/nav') %>
+        <h1>Welcome to NORD</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: -1rem;">Management System & User Directory</p>
+    </header>
+    
+    <main>
+        <div style="margin-bottom: 3rem;">
+            <a href="/host/contact-us" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Register New User</a>
+        </div>
+
+        <h2 style="margin-bottom: 2rem;">Overview of Registered Users</h2>
+        <div class="card-container">
+            <% registeredHomes.forEach(home => { %>
+                <div class="cards">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <% if (home.file) { %>
+                            <img src="/<%= home.file.replace(/\\/g, '/') %>" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;">
+                        <% } else { %>
+                            <div style="width: 60px; height: 60px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">No Pix</div>
+                        <% } %>
+                        <h2><%= home.name %></h2>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Email:</strong>
+                        <span><%= home.email %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Gender:</strong>
+                        <span><%= home.gender %></span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/user-details" class="btn btn-outline" style="width: 100%;">View Full Profile</a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<%- include('../partials/head') %>
+
+<body>
+    <header>
+        <%- include('../partials/nav') %>
+        <h1>Registered Profiles</h1>
+    </header>
+    <main>
+        <div class="card-container">
+            <% registeredHomes.forEach( home => { %>
+                <div class="cards">
+                    <h2>User Profile</h2>
+                    <div class="user-info-item">
+                        <strong>Name:</strong>
+                        <span><%= home.name %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Age:</strong>
+                        <span><%= home.age %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Email:</strong>
+                        <span><%= home.email %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Mobile:</strong>
+                        <span><%= home.mobile %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Gender:</strong>
+                        <span><%= home.gender %></span>
+                    </div>
+                    <div class="user-info-item">
+                        <strong>Photo:</strong>
+                        <% if (home.file) { %>
+                            <div style="margin-top: 0.5rem;">
+                                <img src="/<%= home.file.replace(/\\/g, '/') %>" alt="User Photo" style="max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            </div>
+                        <% } else { %>
+                            <span>No photo uploaded</span>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+
+</html>

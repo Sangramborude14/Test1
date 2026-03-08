@@ -1,0 +1,58 @@
+<%- include('../partials/head') %>
+
+<body>
+    <header>
+        <%- include('../partials/nav') %>
+        <h1>Create Your Account</h1>
+    </header>
+    
+    <main>
+        <div class="form-card">
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmpassword">Confirm Password</label>
+                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Repeat password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>User Type</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="user_type" value="guest" checked> Guest
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="user_type" value="host"> Host
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register Account</button>
+            </form>
+            <p style="margin-top: 1.5rem; text-align: center; color: var(--text-muted);">
+                Already have an account? <a href="/login" style="background: none; box-shadow: none; color: var(--primary); padding: 0;">Sign In</a>
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

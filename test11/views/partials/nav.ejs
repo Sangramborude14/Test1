@@ -1,0 +1,38 @@
+<!-- navigation bar -->
+<nav>
+    <ul>
+        <li>
+            <a href="/" class="nav-link">Home</a>
+        </li>
+        <% if (isLoggedIn) { %>
+            <% if(user && user.user_type === 'host') { %>
+            <li>
+                <a href="/host/contact-us" class="nav-link">Add User</a>
+            </li>
+            <li>
+                <a href="/user-details" class="nav-link">User Details</a>
+            </li>
+            <% } %>
+            <li>
+                <a href="/user-list" class="nav-link">User List</a>
+            </li>
+            <li>
+                <a href="/appointment" class="nav-link">Appointment</a>
+            </li>
+            <li>
+                <form action="/logout" method="POST" class="logout-form">
+                    <button type="submit" class="nav-link logout-btn">LOGOUT</button>
+                </form>
+            </li>
+            
+        <% } else { %>
+            <li>
+                <a href="/login" class="nav-link">Login</a>
+            </li>
+            <li>
+                <a href="/signup" class="nav-link">Sign Up</a>
+            </li>
+                
+        <% } %>
+    </ul>
+</nav>
