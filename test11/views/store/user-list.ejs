@@ -4,6 +4,11 @@
     <header>
         <%- include('../partials/nav') %>
         <h1>Registered User Names</h1>
+        <% if (locals.errorMessage) { %>
+            <h2 style="color: #e74c3c; background: #fadbd8; padding: 10px; border-radius: 5px; font-size: 1rem; margin-top: 10px; text-align: center;">
+                <%= errorMessage %>
+            </h2>
+        <% } %>
     </header>
     <main>
         <ul class="user-list">
@@ -14,7 +19,7 @@
                     </div>
                     <div class="user-actions">
                         <a href="/host/edit" class="btn btn-primary">EDIT</a>
-                        <a href="/host/delete" class="btn btn-danger">DELETE</a>
+                        <a href="/host/delete?id=<%= home._id %>" class="btn btn-danger">DELETE</a>
                     </div>
                 </li>
             <% }) %>

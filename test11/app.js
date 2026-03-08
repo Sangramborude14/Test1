@@ -64,16 +64,17 @@ app.use((req, res, next) => {
     next();
 });
 
-
-app.use(user);
-app.use("/host", (req, res, next) => {
-    if (req.isLoggedIn) {
+app.use(authRouter);
+app.use((req, res, next) => {
+    if (req.session.isLoggedIn) {
         next();
     } else {
     res.redirect("/login");}
 })
+app.use(user);
+
 app.use('/host', host);
-app.use(authRouter);
+
 app.use(errorController.error_404);
 
 //starting PORT
