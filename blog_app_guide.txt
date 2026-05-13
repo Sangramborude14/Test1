@@ -1,0 +1,128 @@
+COMPLETE GUIDE: BLOG APP WITH SESSION AUTH, MONGODB, AND MULTER
+============================================================
+
+This guide documents the full-stack development of a Blog Application where:
+- Users can sign up, log in, and log out (Session-based Auth).
+- Users can create blogs with titles, content, and file attachments.
+- Data is stored in MongoDB via Mongoose.
+- Files are handled via Multer (Upload/Download).
+
+------------------------------------------------------------
+1. BACKEND: MODELS (USING MONGOOSE)
+------------------------------------------------------------
+
+--- User Model (models/User.js) ---
+const mongoose = require('mongoose');
+const userSchema = new mongoose.Schema({
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    firstName: { type: String, required: true }, // "first name"
+    lastName: { type: String, required: true },  // "last name"
+    gender: { type: String, required: true },
+    email: { type: String, required: true, unique: true }
+});
+module.exports = mongoose.model('User', userSchema);
+
+--- Blog Model (models/Blog.js) ---
+const mongoose = require('mongoose');
+const blogSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    blogContent: { type: String, required: true }, // "blog content"
+    timestamp: { type: Date, default: Date.now },  // "timestamp"
+    username: { type: String, required: true },    // "username"
+    filePath: { type: String }                     // For uploaded files
+});
+module.exports = mongoose.model('Blog', blogSchema);
+
+------------------------------------------------------------
+2. BACKEND: SESSION AUTHENTICATION
+------------------------------------------------------------
+Install: $ npm install express-session connect-mongo bcrypt
+
+In server.js:
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+app.use(session({
+    secret: 'keyboard cat', // Change this to a secure key
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: 'YOUR_MONGODB_URI' }),
+    cookie: { 
+        secure: false, // Set to true if using HTTPS
+        httpOnly: true,
+        maxAge: 3600000 // 1 hour
+    }
+}));
+
+// Route logic for Login:
+// req.session.userId = user._id; // Store user ID in session on login successful.
+
+------------------------------------------------------------
+3. BACKEND: MULTER (FILE UPLOAD & DOWNLOAD)
+------------------------------------------------------------
+Install: $ npm install multer
+
+--- Multer Config (routes/blog.js or similar) ---
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+// POST route with upload:
+router.post('/add', upload.single('file'), (req, res) => {
+    // req.file contains the uploaded file info
+    // req.body contains title, content, etc.
+});
+
+// Download Route:
+router.get('/download/:filename', (req, res) => {
+    const file = path.join(__dirname, '../uploads/', req.params.filename);
+    res.download(file);
+});
+
+------------------------------------------------------------
+4. FRONTEND: FOUR WEB PAGES (REACT)
+------------------------------------------------------------
+
+1. [HOME] (Home.jsx)
+   - Landing page. Displays a welcome message and navigation links.
+
+2. [ADD BLOG] (addBlog.jsx)
+   - A form where logged-in users enter:
+     - Title
+     - Blog Content
+     - File Upload (Input type="file")
+   - Action: Sends a FormData object to the backend.
+
+3. [MY BLOG] (myBlog.jsx)
+   - Fetches and displays blogs authored by the current logged-in user.
+   - Requires session-based authorization check on the backend.
+
+4. [ALL BLOG] (AllBlog.jsx)
+   - Fetches and displays all blogs from all users in the community.
+   - Shows blog titles, snippets, and download links for attachments.
+
+------------------------------------------------------------
+5. CORE STEPS TO IMPLEMENT
+------------------------------------------------------------
+1. Setup Node/Express Backend.
+2. Initialize Mongoose for User and Blog schemas.
+3. Configure Express-Session to keep users logged in.
+4. Implement Signup/Login logic with bcrypt for password safety.
+5. Setup Multer to handle disk storage for blog attachments.
+6. Create React Components for each of the 4 pages.
+7. Use Axios with 'withCredentials: true' to interact with the session API.
+8. Implement Authorization Middleware on backend to protect "addBlog" and "myBlog" routes.
+
+------------------------------------------------------------
+END OF GUIDE
+------------------------------------------------------------

@@ -56,7 +56,7 @@ exports.postLogin = async (req, res, next) => {
 
     if (!isMatch) {
         console.error(`password not correct`)
-        return res.status(422).render("auth/login", { pageTitle: "login(invalid password)", isLoggedIn: req.isLoggedIn, user: {} })
+        return rs.status(422).render("auth/login", { pageTitle: "login(invalid password)", isLoggedIn: req.isLoggedIn, user: {} })
     }
 
     req.session.isLoggedIn = true;
